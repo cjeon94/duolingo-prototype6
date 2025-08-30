@@ -105,7 +105,7 @@ export default function ResultScreen(): JSX.Element {
     } else if (showSecondBubble) {
       setShowSecondBubble(false);
       setShowOverlay(false);
-      navigate("/lesson/translate");
+      navigate("/lesson/complete");
     }
   };
 
