@@ -6,7 +6,7 @@ export default function LessonComplete(): JSX.Element {
 
   React.useEffect(() => {
     // Play celebration sound
-    const celebrationSound = new Audio("https://raw.githubusercontent.com/cjeon94/duolingo-sound-assets/main/Voicy_Correct%20answer%20sound%20effect.mp3");
+    const celebrationSound = new Audio("https://raw.githubusercontent.com/cjeon94/duolingo-sound-assets/main/Voicy_Duolingo-lesson-complete-sound.mp3");
     celebrationSound.play().catch(() => {
       console.log("Could not play celebration sound");
     });
