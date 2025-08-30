@@ -478,19 +478,22 @@ export default function ResultScreen(): JSX.Element {
             {/* Second Speech Bubble */}
             {showSecondBubble && (
               <div 
-                className="absolute left-1/2 top-[23%] -translate-x-1/2 z-50 animate-celebration-bubble cursor-pointer"
+                className="absolute left-1/2 top-[23%] -translate-x-1/2 z-50 animate-celebration-bubble"
                 aria-live="polite"
-                onClick={() => {
-                  setShowSecondBubble(false);
-                  setShowOverlay(false);
-                  navigate("/lesson/translate");
-                }}
               >
                 <div className="relative rounded-2xl border border-gray-200 bg-white px-4 py-3 shadow-lg">
                   <span className="absolute left-1/2 -translate-x-1/2 -bottom-2 h-4 w-4 rotate-45 bg-white border-b border-r border-gray-200" />
                   <p className="text-[15.84px] text-[#4b4b4b] font-['Nunito',Helvetica]">I'll help you review each word at the optimal timing.</p>
                 </div>
               </div>
+            )}
+            
+            {/* Invisible clickable area for second bubble state */}
+            {showSecondBubble && (
+              <div 
+                className="absolute inset-0 z-40 cursor-pointer"
+                onClick={() => navigate("/lesson/complete")}
+              />
             )}
           </div>
         )}
