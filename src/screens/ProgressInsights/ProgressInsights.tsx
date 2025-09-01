@@ -1,50 +1,47 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronRight, Target, Calendar, TrendingUp } from "lucide-react";
+import { Calendar, ArrowLeftRight, BookText, History, SpellCheck } from "lucide-react";
 
 export default function ProgressInsights(): JSX.Element {
   const navigate = useNavigate();
 
-  const handleContinue = () => {
+  const handleReady = () => {
     navigate("/");
   };
 
-  const skillsData = [
+  const focusAreas = [
     {
-      skill: "Vocabulary",
-      progress: 75,
-      color: "bg-[#58cc02]",
-      lightColor: "bg-green-100",
-      status: "Strong"
+      topic: "Por vs. Para",
+      icon: ArrowLeftRight,
+      colorTheme: "blue",
+      bgColor: "bg-blue-100",
+      ringColor: "ring-blue-200",
+      iconColor: "text-blue-600"
     },
     {
-      skill: "Grammar",
-      progress: 45,
-      color: "bg-[#ff9600]",
-      lightColor: "bg-orange-100",
-      status: "Needs work"
+      topic: "Prepositions",
+      icon: BookText,
+      colorTheme: "green",
+      bgColor: "bg-green-100",
+      ringColor: "ring-green-200",
+      iconColor: "text-green-600"
     },
     {
-      skill: "Pronunciation",
-      progress: 30,
-      color: "bg-[#ff4b4b]",
-      lightColor: "bg-red-100",
-      status: "Focus area"
+      topic: "Past Tense",
+      icon: History,
+      colorTheme: "amber",
+      bgColor: "bg-amber-100",
+      ringColor: "ring-amber-200",
+      iconColor: "text-amber-600"
     },
     {
-      skill: "Listening",
-      progress: 60,
-      color: "bg-[#1cb0f6]",
-      lightColor: "bg-blue-100",
-      status: "Good"
+      topic: "Subject-Verb Agreement",
+      icon: SpellCheck,
+      colorTheme: "rose",
+      bgColor: "bg-rose-100",
+      ringColor: "ring-rose-200",
+      iconColor: "text-rose-600"
     }
-  ];
-
-  const weeklyGoals = [
-    { week: "Week 1", focus: "Basic greetings & introductions", completed: false },
-    { week: "Week 2", focus: "Family & relationships", completed: false },
-    { week: "Week 3", focus: "Food & dining", completed: false },
-    { week: "Week 4", focus: "Travel & directions", completed: false }
   ];
 
   return (
@@ -61,122 +58,88 @@ export default function ProgressInsights(): JSX.Element {
           </div>
         </div>
 
-        {/* Header */}
-        <div className="px-6 py-4 border-b border-gray-100">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="w-8 h-8 bg-[#58cc02] rounded-full flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-white" />
+        {/* Main Content */}
+        <div className="px-6 py-6 h-full flex flex-col">
+          
+          {/* Header with Calendar Icon and Duo */}
+          <div className="flex items-center gap-4 mb-6">
+            <div className="w-16 h-16 bg-[#58cc02] rounded-full flex items-center justify-center shadow-lg">
+              <Calendar className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-xl font-bold text-[#4b4b4b]">Your Progress</h1>
+            <div className="w-16 h-16 flex items-center justify-center">
+              <img 
+                src="/cheer-owl.gif" 
+                alt="Duo mascot" 
+                className="w-16 h-16 object-contain"
+              />
+            </div>
           </div>
-          <p className="text-sm text-gray-600">Let's see what we can work on together!</p>
-        </div>
 
-        {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto pb-20">
-          {/* Skills Assessment */}
-          <div className="px-6 py-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Target className="w-5 h-5 text-[#ce82ff]" />
-              <h2 className="text-lg font-bold text-[#4b4b4b]">Skills Assessment</h2>
+          {/* Encouraging Message */}
+          <div className="mb-8">
+            <p className="text-xl font-bold text-[#4b4b4b] leading-7">
+              Great work today! Based on your progress, here's your personalized plan for the next 30 days…
+            </p>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="mb-8">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-sm font-semibold text-gray-600">Master these in 30 days</span>
+              <span className="text-sm font-bold text-[#58cc02]">25%</span>
             </div>
+            <div className="h-3 bg-gray-200 rounded-full overflow-hidden">
+              <div className="w-1/4 h-full bg-[#58cc02] rounded-full transition-all duration-1000 ease-out"></div>
+            </div>
+          </div>
+
+          {/* Focus Areas Section */}
+          <div className="flex-1">
+            <h2 className="text-2xl font-bold text-[#4b4b4b] mb-6">
+              Your 30-Day Focus Areas
+            </h2>
             
             <div className="space-y-4">
-              {skillsData.map((skill, index) => (
-                <div key={skill.skill} className="bg-white rounded-xl border border-gray-200 p-4 shadow-sm">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-semibold text-[#4b4b4b]">{skill.skill}</span>
-                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${
-                      skill.progress >= 70 ? 'bg-green-100 text-green-700' :
-                      skill.progress >= 50 ? 'bg-orange-100 text-orange-700' :
-                      'bg-red-100 text-red-700'
-                    }`}>
-                      {skill.status}
-                    </span>
-                  </div>
-                  
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 h-2 bg-gray-200 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full ${skill.color} rounded-full transition-all duration-1000 ease-out`}
-                        style={{ 
-                          width: `${skill.progress}%`,
-                          animationDelay: `${index * 200}ms`
-                        }}
-                      />
+              {focusAreas.map((area, index) => {
+                const Icon = area.icon;
+                return (
+                  <div 
+                    key={area.topic} 
+                    className="flex items-center gap-4 animate-fade-in"
+                    style={{ animationDelay: `${index * 150}ms` }}
+                  >
+                    {/* Circular Badge */}
+                    <div className={`grid place-items-center h-10 w-10 rounded-full shadow-inner ring-1 ${area.bgColor} ${area.ringColor}`}>
+                      <Icon className={`h-5 w-5 ${area.iconColor}`} />
                     </div>
-                    <span className="text-sm font-semibold text-gray-600">{skill.progress}%</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 30-Day Plan */}
-          <div className="px-6 py-6 bg-gradient-to-br from-[#f0f9ff] to-[#e6f3ff] mx-4 rounded-2xl mb-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Calendar className="w-5 h-5 text-[#1cb0f6]" />
-              <h2 className="text-lg font-bold text-[#4b4b4b]">30-Day Learning Plan</h2>
-            </div>
-            
-            <div className="space-y-3">
-              {weeklyGoals.map((goal, index) => (
-                <div key={goal.week} className="bg-white rounded-xl p-4 border border-blue-100 shadow-sm">
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="text-sm font-bold text-[#1cb0f6]">{goal.week}</span>
-                        <div className="w-2 h-2 bg-[#1cb0f6] rounded-full"></div>
-                      </div>
-                      <p className="text-sm text-gray-700">{goal.focus}</p>
+                    
+                    {/* Topic Text */}
+                    <div className="flex items-center gap-2">
+                      <span className="text-lg font-medium text-[#4b4b4b]">⚡</span>
+                      <span className="text-lg font-semibold text-[#4b4b4b]">{area.topic}</span>
                     </div>
-                    <ChevronRight className="w-4 h-4 text-gray-400" />
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
 
-          {/* Recommendations */}
-          <div className="px-6 py-4">
-            <h3 className="text-base font-bold text-[#4b4b4b] mb-4">Recommended Focus Areas</h3>
-            
-            <div className="space-y-3">
-              <div className="bg-[#ffeaea] border border-[#ffcccc] rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#ff4b4b] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">1</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#ff4b4b] text-sm">Practice pronunciation daily</p>
-                    <p className="text-xs text-gray-600">Use the microphone feature more often</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-orange-50 border border-orange-200 rounded-xl p-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-[#ff9600] rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white font-bold text-sm">2</span>
-                  </div>
-                  <div>
-                    <p className="font-semibold text-[#ff9600] text-sm">Review grammar rules</p>
-                    <p className="text-xs text-gray-600">Focus on sentence structure</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Motivational Tagline */}
+          <div className="text-center mb-6">
+            <p className="text-base text-gray-600 font-medium">
+              Consistency beats intensity. Let's do this!
+            </p>
           </div>
-        </div>
 
-        {/* Footer with Continue Button */}
-        <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
-          <button
-            onClick={handleContinue}
-            className="w-full h-12 rounded-xl text-white font-semibold bg-[#58cc02] shadow-[0_3px_0_#48a502] active:translate-y-[2px] active:shadow-none transition-all hover:bg-[#4fb802]"
-          >
-            Continue Learning
-          </button>
+          {/* CTA Button */}
+          <div className="pb-6">
+            <button
+              onClick={handleReady}
+              className="w-full h-14 rounded-xl text-white font-bold text-lg bg-[#58cc02] shadow-[0_4px_0_#48a502] active:translate-y-[2px] active:shadow-[0_2px_0_#48a502] transition-all hover:bg-[#4fb802] transform hover:scale-105"
+            >
+              ✅ I'm Ready!
+            </button>
+          </div>
         </div>
 
         {/* Home Indicator */}
