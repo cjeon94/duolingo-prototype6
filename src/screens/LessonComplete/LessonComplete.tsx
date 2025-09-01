@@ -13,7 +13,7 @@ export default function LessonComplete(): JSX.Element {
   }, []);
 
   const handleContinue = () => {
-    navigate("/");
+    navigate("/progress/insights");
   };
 
   return (
